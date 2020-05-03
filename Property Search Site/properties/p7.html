@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Property 7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../jQuery.js"></script>
+<script src="../jquery-ui.js"></script>
+<link href="../jquery-ui.css" rel="stylesheet">
+<link href="http://code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css" rel="stylesheet">
+<!--Adds a 'sunny' theme -->
+
+</head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.mySlides {
+	display: none
+}
+#prop7 {
+	text-align: center;
+}
+.w3-container {
+	text-align: center;
+}
+body {
+	font-family: 'Black Han Sans', sans-serif; /* external font*/
+}
+@font-face { /* external font*/
+	font-family: 'Black Han Sans', sans-serif;
+ src: url (Black_Han_Sans/BlackHanSans-Regular.ttf);
+}
+</style>
+<body background="../images/bg.jpg" style="background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; height: 100%;">
+<p id="prop7">
+  <button class="add">Add To Favourites</button>
+  <button class="remove">Remove from Favourites</button>
+</p>
+<div class="w3-container">
+  <h2>Flat - 5 bedrooms</h2>
+  <h2><i>£26,000,000</i></h2>
+  <!-- Italics to make it stand out --> 
+  <strong>
+  <p>One Kensington Gardens, Kensington Road, London W8</p>
+  </strong> <!-- bold to make it stand out --> 
+</div>
+<div class="w3-content" style="max-width:800px"> <!--Slideshow code used from w3cschool--> 
+  <img class="mySlides" src="../images/prop6pic1.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic2.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic3.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic4.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic5.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic6.jpg" style="width:100%"> <img class="mySlides" src="../images/prop1EPC.png" style="width:100%"> </div>
+<div class="w3-center">
+  <div class="w3-section">
+    <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
+    <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+  </div>
+  <button class="w3-button demo" onclick="currentDiv(1)">1</button>
+  <button class="w3-button demo" onclick="currentDiv(2)">2</button>
+  <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+  <button class="w3-button demo" onclick="currentDiv(4)">4</button>
+  <button class="w3-button demo" onclick="currentDiv(5)">5</button>
+  <button class="w3-button demo" onclick="currentDiv(6)">6</button>
+  <button class="w3-button demo" onclick="currentDiv(7)">7</button>
+</div>
+<div id="tabs">
+  <ul>
+    <li> <a href="#tabs-1">Description</a> </li>
+    <li> <a href="#tabs-2">Floor Plan</a> </li>
+    <li> <a href="#tabs-3">Google Map</a> </li>
+  </ul>
+  <div id="tabs-1">
+    <p>An exceptional development, designed by Sir David Chipperfield, of 97 apartments situated opposite Kensington Palace and Gardens with world class amenities. <br>
+      <br>
+      Residents benefit from a 24-hour dedicated concierge, valet parking, health spa, 25m indoor swimming pool, a private health and fitness centre, sauna and steam room, in addition to private treatment rooms. <br>
+      <br>
+      The development is complete and ready for occupation with show apartments available to view. <br>
+      <br>
+      From the outside this house looks old, but wonderful. It has been built with white bricks and has brown stone decorations. Short, wide windows let in plenty of light and have been added to the house in a mostly asymmetric way.
+      
+      The house is equipped with a huge kitchen and one large bathroom, it also has a snug living room, five bedrooms, a large dining room, a playroom and a grand basement.
+      
+      The building is square shaped. The house is fully surrounded by a patio.
+      The second floor is smaller than the first, which allowed for a roof garden on two sides of the house. This floor has roughly the same style as the floor below.
+      
+      The roof is low and v-shaped and is covered with grey wood shingles. Two small chimneys sit at the side of the house. Several long, thin windows let in plenty of light to the rooms below the roof.
+      The house itself is surrounded by a modest, childsafe garden covered mostly in grass and with a children's playground in the center.
+      One Kensington Gardens is situated in the heart of London’s illustrious Royal Borough, opposite Kensington Palace Gardens and Hyde Park, and within walking distance of the shopping and transport facilities of Kensington High Street and Knightsbridge</p>
+  </div>
+  <div id="tabs-2">
+    <p><img class="fp1" src="../images/prop1Plan.jpg"></p>
+  </div>
+  <div id="tabs-3">
+    <div class="mapouter">
+      <div class="gmap_canvas">
+        <iframe width="1080" height="631" id="gmap_canvas" src="https://maps.google.com/maps?q=Petts%20Wood%20Road%2C%20Petts%20Wood%2C%20Orpington&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        <a href="https://www.pureblack.de">pure black</a></div>
+      <style>
+.mapouter{text-align:right;height:631px;width:1080px;}.gmap_canvas {overflow:hidden;background:none!important;height:631px;width:1080px;}
+</style>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-red", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-red";
+}
+	</script>
+</html>

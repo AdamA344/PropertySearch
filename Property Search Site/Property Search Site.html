@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Property</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><!--Allows use of JQuery database from Google-->
+
+<script src="jQuery.js"></script><!--Links code to JQuery document -->
+
+<script src="jquery-ui.js"></script><!--Links code to JQuery UI document -->
+<link href="jquery-ui.css" rel="stylesheet">
+<!--Links code to JQuery CSS  document -->
+<link href="http://code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css" rel="stylesheet">
+<!--Adds a 'sunny' theme -->
+
+</head>
+<style>
+#title {
+	text-align: center;
+}
+.input {
+	text-align: center;
+}
+.output {
+	text-align: center;
+}
+body {
+	font-family: 'Black Han Sans', sans-serif; /* external font*/
+}
+@font-face { /* external font*/
+	font-family: 'Black Han Sans', sans-serif;
+ src: url (Black_Han_Sans/BlackHanSans-Regular.ttf);
+}
+ul {
+	list-style-type: none; /*removes bullet points */
+}
+li {
+	border-top: 2px solid black; /*seperates content to make it easier to view*/
+}
+</style>
+<body background="images/bg.jpg" style="background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; height: 100%;">
+<h1 id="title">Find your home today</h1>
+<!--JQUERY UI elements to allow user to select specific attibutes-->
+<div class="input">
+  <div class="room">
+    <h3>Min Bedrooms:</h3>
+    <input id="spinner" value="1">
+    <!--Automatic Value will be 1-->
+    
+    <h3>Max Bedrooms:</h3>
+    <input id="spinner2" value="7">
+    <!--Automatic Value will be 7--> 
+  </div>
+  <h3>Property type:</h3>
+  <select name="property" id="property">
+    <option value="Flat">Flat</option>
+    <option value="House">House</option>
+    <option value="Both" selected>Both</option>
+    <!--Selected will make it a default option-->
+  </select>
+  <div class="Time">
+    <h3>Time Property was Added</h3>
+    <!--Dropdown menu-->
+    <select name="time" id="time">
+      <option value="January">January(2018) </option>
+      <option value="February">February (2018) </option>
+      <option value="March">March (2018) </option>
+      <option value="April">April (2018) </option>
+      <option value="May">May (2018) </option>
+      <option value="June">June (2018) </option>
+      <option value="July">July (2018) </option>
+      <option value="August">August (2018) </option>
+      <option value="September">September (2018) </option>
+      <option value="October">October (2018) </option>
+      <option value="November">November (2018) </option>
+      <option value="December">December (2018) </option>
+      <option value="Anytime" selected>Anytime</option>
+      <!--Selected will make 'Anytime' a default option-->
+    </select>
+  </div>
+  <p class="price">
+  <h3>Price Range</h3>
+  <input type="text" id="amount" readonly class="slideText">
+  <!--makes the  slider so user can choose the min & max amount and have the specific properties within that range shown-->
+  </p>
+  <div id="slide"></div>
+  <br>
+  <br>
+  <button id="Search">Search</button>
+  <!--starts the search results--> 
+</div>
+<div class="output">
+  <div id="results"></div>
+  <!-- where the results will be displayed--> 
+  
+  <br>
+  <br>
+  <button class="view">View Favourites</button>
+  <button class="clear">Clear All</button>
+  <div id="starred"></div>
+  <!-- where the favourites will be displayed--> 
+</div>
+<script>
+
+var data = {  //JSON data 
+
+	"properties": [ //list of properties including all their attributes so that they can be searched based on that attribute 
+        {
+           "id":"prop1",
+			"type":"House",
+            "bedrooms":3,
+			"price":650000,
+			"tenure":"Freehold",
+			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+			"location":"Petts Wood Road, Petts Wood, Orpington",
+			"picture":"images/prop1pic1small.jpg",
+			"url":"properties/p1.html",
+            "added": {
+                "month":"March",
+                "day":12,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop2",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":299995,
+			"tenure":"Freehold",
+			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms. This apartment being only five years old, is still under a 10 year building guarantee...",
+			"location":"Crofton Road, Orpington, BR6",
+			"picture":"images/prop2pic1small.jpg",
+			"url":"properties/p2.html",
+            "added": {
+                "month":"September",
+                "day":14,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop3",
+			"type":"House",
+            "bedrooms":4,
+			"price":499995,
+			"tenure":"Freehold",
+			"description":"We are delighted to offer for sale this FOUR DOUBLE bedroom 1930's end of terrace property located on the ever popular NIGHTINGALE ESTATE. The property has been extended to the side and to the rear and still offers scope for further extensions, features include open plan through lounge plus spacious kitchen diner, ground floor wc along with first floor family bathroom and off street parking for 3 cars to front, the property is also available on a CHAIN FREE basis...",
+			"location":"Scarborough Road, London, N9",
+			"picture":"images/prop3pic1small.jpg",
+			"url":"properties/p3.html",
+            "added": {
+                "month":"October",
+                "day":31,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop4",
+			"type":"House",
+            "bedrooms":4,
+			"price":600000,
+			"tenure":"Freehold",
+			"description":"Having been recently fully refurbished this Edwardian 3 bedroom (easily converted to the original 4 bedroom) semi detached family home within walking distance of Mottingham Rail Station is perfect for those needing daily access to London for their commute. Fully rewired and with a completely new plumbing system, the property now comprises of a large reception, beautiful fitted kitchen, shower room and dining room downstairs, and upstairs three double bedrooms (of which 2 are very large double rooms) and a family bathroom. The property also benefits from a new boiler, under floor heating in both bathrooms and the kitchen, Cat6 data cabling to all rooms, double glazing, a 76 rear garden and off street parking to the front... ",
+			"location":"Scarborough Road, London, N9",
+			"picture":"images/prop4pic1small.jpg",
+			"url":"properties/p4.html",
+            "added": {
+                "month":"March",
+                "day":15,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop5",
+			"type":"House",
+            "bedrooms":7,
+			"price":36000000,
+			"tenure":"Freehold",
+			"description":"Mansion House is immersed in prestige and the design includes the finest Italian bookmatched marbles, magnificent gilding, a four metre cupola, a ten metre swimming pool with health/spa facilities, iconic London views and craft from artisans who have worked at Windsor Castle and The Palace of Westminster. With views of Big Ben, the House of Lords and Westminster Abbey from its roof terrace, this Grade II Listed building which is over 15m wide incorporates a wealth of striking period features such as the sweeping central staircase, the beautifully ornate gilt cupola and the dramatically spacious oak-panelled first floor drawing room with 5 windows. The house benefits from wonderful amenities including an 8 person lift, spa/gym/Jacuzzi with c.10m swimming pool, comfort cooling, integrated audio-visual/lighting systems, stunning roof terrace, walk-in wine room, c.11m drawing room, games room, cinema room, bar, garden, double kitchen, study and 7 bedrooms/ensuites including master dressing room and 2 staff bedrooms/facilities...",
+			"location":"Mansion House, Cowley Street, Westminster, London, SW1P",
+			"picture":"images/prop5pic1small.jpg",
+			"url":"properties/p5.html",
+            "added": {
+                "month":"February",
+                "day":19,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop6",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":400000,
+			"tenure":"Freehold",
+			"description":"Stylishly presented two double bedroom split level maisonette with spacious accommodation laid out over the lower ground, ground and first floors of an attractive period style property. Features include a generous reception room with attractive wood flooring, separate well equipped, fitted kitchen, and modern downstairs bathroom. The property also benefits from own private entrance, private parking and an attractive private lawned garden to the rear. The property is conveniently located within easy access of Streatham station, providing excellent links into Central London and also close to an array of bus routes, shops, bars, restaurants, cafes and amenities on the high road. Both Tooting Bec (with popular Lido) and Streatham Common are close-by offering a pleasant open space away from the bustle of this excellent central location...",
+			"location":"69 Babington Road, Streatham, SW16",
+			"picture":"images/prop6pic1small.jpg",
+			"url":"properties/p6.html",
+            "added": {
+                "month":"December",
+                "day":25,
+                "year":2018
+            }
+        },
+		{
+            "id":"prop7",
+			"type":"Flat",
+            "bedrooms":5,
+			"price":26000000,
+			"tenure":"Freehold",
+			"description":"An exceptional development, designed by Sir David Chipperfield, of 97 apartments situated opposite Kensington Palace and Gardens with world class amenities. Residents benefit from a 24-hour dedicated concierge, valet parking, health spa, 25m indoor swimming pool, a private health and fitness centre, sauna and steam room, in addition to private treatment rooms. One Kensington Gardens is situated in the heart of London’s illustrious Royal Borough, opposite Kensington Palace Gardens and Hyde Park, and within walking distance of the shopping and transport facilities of Kensington High Street and Knightsbridge...",
+			"location":"One Kensington Gardens, Kensington Road, London W8",
+			"picture":"images/prop7pic1small.jpg",
+			"url":"properties/p7.html",
+            "added": {
+                "month":"December",
+                "day":5,
+                "year":2018
+            }
+        }
+]}
+
+</script>
+</body>
+</html>

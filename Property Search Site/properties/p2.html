@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Property 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../jQuery.js"></script>
+<script src="../jquery-ui.js"></script>
+<link href="../jquery-ui.css" rel="stylesheet">
+<link href="http://code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css" rel="stylesheet">
+<!--Adds a 'sunny' theme -->
+
+</head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.mySlides {
+	display: none
+}
+#prop2 {
+	text-align: center;
+}
+.w3-container {
+	text-align: center;
+}
+body {
+	font-family: 'Black Han Sans', sans-serif; /* external font*/
+}
+@font-face { /* external font*/
+	font-family: 'Black Han Sans', sans-serif;
+ src: url (Black_Han_Sans/BlackHanSans-Regular.ttf);
+}
+</style>
+<body background="../images/bg.jpg" style="background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; height: 100%;">
+<p id="prop2">
+  <button class="add">Add To Favourites</button>
+  <button class="remove">Remove from Favourites</button>
+</p>
+<div class="w3-container">
+  <h2>Flat - 2 bedrooms</h2>
+  <h2><i>£299,995</i></h2>
+  <!-- Italics to make it stand out --> 
+  <strong>
+  <p>Crofton Road, Orpington, BR6</p>
+  </strong><!-- bold to make it stand out --> 
+</div>
+<div class="w3-content" style="max-width:800px"> <!--Slideshow code used from w3cschool--> 
+  <img class="mySlides" src="../images/prop2pic1.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic2.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic3.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic4.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic5.jpg" style="width:100%"> <img class="mySlides" src="../images/prop2pic6.jpg" style="width:100%"> <img class="mySlides" src="../images/prop1EPC.png" style="width:100%"> </div>
+<div class="w3-center">
+  <div class="w3-section">
+    <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
+    <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+  </div>
+  <button class="w3-button demo" onclick="currentDiv(1)">1</button>
+  <button class="w3-button demo" onclick="currentDiv(2)">2</button>
+  <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+  <button class="w3-button demo" onclick="currentDiv(4)">4</button>
+  <button class="w3-button demo" onclick="currentDiv(5)">5</button>
+  <button class="w3-button demo" onclick="currentDiv(6)">6</button>
+  <button class="w3-button demo" onclick="currentDiv(7)">7</button>
+</div>
+<div id="tabs">
+  <ul>
+    <li> <a href="#tabs-1">Description</a> </li>
+    <li> <a href="#tabs-2">Floor Plan</a> </li>
+    <li> <a href="#tabs-3">Google Map</a> </li>
+  </ul>
+  <div id="tabs-1">
+    <p>From the outside this house looks posh and extravagant. It has been built with yellow pine wood and has granite decorations. Large, octagon windows brighten up the house and have been added to the house in a fairly asymmetrical pattern.
+      
+      The house is equipped with an old-fashioned kitchen and one average bathroom, it also has a comfortable living room, two bedrooms, a roomy dining room and a cozy storage room.
+      
+      The building is shaped like a T. The two extensions extend into stylish gardens reaching until the end of that side of the house.
+      The second floor is smaller than the first, which allowed for several small balconies on one side of the house. This floor has a different style than the floor below.
+      
+      The roof is low and square shaped and is covered with wheat straw. Two small chimneys poke out the center of the roof. Large, skylight windows let in plenty of light to the rooms below the roof.
+      The house itself is surrounded by paved ground, with a pool at the backside of the house. <br>
+      <br>
+      Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms. This apartment being only five years old, is still under a 10 year building guarantee</p>
+  </div>
+  <div id="tabs-2">
+    <p><img class="fp1" src="../images/prop2Plan.jpg"></p>
+  </div>
+  <div id="tabs-3">
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="1080" height="631" id="gmap_canvas" src="https://maps.google.com/maps?q=Crofton%20Road%2C%20Orpington%2C%20BR6&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">pure black</a></div><style>.mapouter{text-align:right;height:631px;width:1080px;}.gmap_canvas {overflow:hidden;background:none!important;height:631px;width:1080px;}</style></div>
+  </div>
+</div>
+</body>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-red", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-red";
+}
+	</script>
+
+	
+</html>
